@@ -33,7 +33,7 @@ import {
   booleanInputEventTest,
   ErrorTestExpectation,
 } from '@jsonforms/angular-test';
-import { ToggleControlRenderer, ToggleControlRendererTester } from '../src';
+import { ToggleControlRenderer, ToggleControlRendererTester } from './toggle.renderer';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { JsonFormsAngularService } from '@jsonforms/angular';
 

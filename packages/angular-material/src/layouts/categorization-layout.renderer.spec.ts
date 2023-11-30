@@ -39,10 +39,12 @@ import {
 } from '@jsonforms/angular';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import {
-  CategorizationTabLayoutRenderer,
+  CategorizationTabLayoutRenderer
+} from './categorization-layout.renderer';
+import {
   TextControlRenderer,
   TextControlRendererTester,
-} from '../src';
+} from '../controls/text.renderer';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { setupMockStore, getJsonFormsService } from '@jsonforms/angular-test';
 import { MatFormFieldModule } from '@angular/material/form-field';

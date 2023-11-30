@@ -46,7 +46,7 @@ import {
   getJsonFormsService,
 } from '@jsonforms/angular-test';
 import { ControlElement, JsonSchema, Actions } from '@jsonforms/core';
-import { AutocompleteControlRenderer } from '../src';
+import { AutocompleteControlRenderer } from './autocomplete.renderer';
 import { JsonFormsAngularService } from '@jsonforms/angular';
 import { ErrorObject } from 'ajv';
 import { FlexLayoutModule } from '@angular/flex-layout';

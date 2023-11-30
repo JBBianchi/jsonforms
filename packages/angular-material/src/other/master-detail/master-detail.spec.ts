@@ -37,8 +37,8 @@ import {
 } from '@jsonforms/angular';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { DebugElement } from '@angular/core';
-import { MasterListComponent } from '../src/other/master-detail/master';
-import { JsonFormsDetailComponent } from '../src/other/master-detail/detail';
+import { MasterListComponent } from './master';
+import { JsonFormsDetailComponent } from './detail';
 import { getJsonFormsService, setupMockStore } from '@jsonforms/angular-test';
 import { Actions } from '@jsonforms/core';
 import { MatTooltipModule } from '@angular/material/tooltip';

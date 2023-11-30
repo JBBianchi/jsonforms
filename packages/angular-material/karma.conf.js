@@ -2,7 +2,7 @@
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
 module.exports = function (config) {
-  config.set({
+  var options = {
     basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
     plugins: [
@@ -25,14 +25,13 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      //dir: require('path').join(__dirname, '../../coverage/angular-material'),
       subdir: '.',
       reporters: [
         { type: 'lcov' },
         { type: 'text-summary' }
       ]
     },
-    reporters: ['progress', 'kjhtml', 'dots'],
+    reporters: ['progress', 'kjhtml', 'dots', 'coverage'],
 
     browsers: [ config.singleRun ? 'ChromeHeadlessNoSandbox' : 'Chrome' ],
     customLaunchers: {
@@ -51,5 +50,6 @@ module.exports = function (config) {
     webpackServer: {
       noInfo: true,
     },
-  });
+  };
+  config.set(options);
 };

@@ -32,7 +32,7 @@ import {
   rangeErrorTest,
   rangeInputEventTest,
 } from '@jsonforms/angular-test';
-import { RangeControlRenderer, RangeControlRendererTester } from '../src';
+import { RangeControlRenderer, RangeControlRendererTester } from './range.renderer';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { JsonFormsAngularService } from '@jsonforms/angular';
 

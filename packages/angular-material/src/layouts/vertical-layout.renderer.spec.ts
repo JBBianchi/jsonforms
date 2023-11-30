@@ -23,80 +23,95 @@
   THE SOFTWARE.
 */
 import { ComponentFixture } from '@angular/core/testing';
-import { GroupLayout, UISchemaElement } from '@jsonforms/core';
-import { MatCard, MatCardTitle } from '@angular/material/card';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { UISchemaElement, VerticalLayout } from '@jsonforms/core';
 import { beforeEachLayoutTest, setupMockStore } from '@jsonforms/angular-test';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { LayoutChildrenRenderPropsPipe } from '../src/layouts/layout.renderer';
 import {
-  GroupLayoutRenderer,
-  groupLayoutTester,
-} from '../src/layouts/group-layout.renderer';
+  VerticalLayoutRenderer,
+  verticalLayoutTester,
+} from './vertical-layout.renderer';
+import { LayoutChildrenRenderPropsPipe } from './layout.renderer';
 
-describe('Group layout tester', () => {
+describe('Vertical layout tester', () => {
   it('should succeed', () => {
-    expect(groupLayoutTester({ type: 'Group' }, undefined, undefined)).toBe(1);
+    expect(
+      verticalLayoutTester({ type: 'VerticalLayout' }, undefined, undefined)
+    ).toBe(1);
   });
 });
-describe('Group layout', () => {
+describe('Vertical layout', () => {
   let fixture: ComponentFixture<any>;
+  let component: any;
 
   beforeEach(() => {
-    fixture = beforeEachLayoutTest(GroupLayoutRenderer, {
-      declarations: [LayoutChildrenRenderPropsPipe, MatCard, MatCardTitle],
+    fixture = beforeEachLayoutTest(VerticalLayoutRenderer, {
+      declarations: [LayoutChildrenRenderPropsPipe],
       imports: [FlexLayoutModule],
     });
+    component = fixture.componentInstance;
   });
 
   it('render with undefined elements', () => {
     const uischema: UISchemaElement = {
-      type: 'Group',
+      type: 'VerticalLayout',
     };
-    setupMockStore(fixture, { data: {}, schema: {}, uischema });
+    setupMockStore(fixture, {
+      data: {},
+      schema: {},
+      uischema,
+    });
     fixture.componentInstance.ngOnInit();
     fixture.detectChanges();
-    const card: DebugElement[] = fixture.debugElement.queryAll(
-      By.directive(MatCard)
-    );
-    // title
-    expect(card[0].nativeElement.children.length).toBe(1);
+    expect(fixture.nativeElement.children[0].children.length).toBe(0);
+    // the component is wrapped in a div
+    expect(fixture.nativeElement.children[0].style.display).not.toBe('none');
   });
 
   it('render with null elements', () => {
-    const uischema: GroupLayout = {
-      type: 'Group',
+    const uischema: VerticalLayout = {
+      type: 'VerticalLayout',
       elements: null,
     };
-    setupMockStore(fixture, { data: {}, schema: {}, uischema });
+
+    setupMockStore(fixture, {
+      data: {},
+      schema: {},
+      uischema,
+    });
     fixture.componentInstance.ngOnInit();
     fixture.detectChanges();
-    const card: DebugElement[] = fixture.debugElement.queryAll(
-      By.directive(MatCard)
-    );
-    // title
-    expect(card[0].nativeElement.children.length).toBe(1);
+    expect(fixture.nativeElement.children[0].children.length).toBe(0);
   });
 
   it('render with children', () => {
-    const uischema: GroupLayout = {
-      type: 'Group',
-      label: 'foo',
+    const uischema: VerticalLayout = {
+      type: 'VerticalLayout',
       elements: [{ type: 'Control' }, { type: 'Control' }],
     };
-    setupMockStore(fixture, { data: {}, schema: {}, uischema });
+    setupMockStore(fixture, {
+      data: {},
+      schema: {},
+      uischema,
+    });
     fixture.componentInstance.ngOnInit();
     fixture.detectChanges();
-    const card: DebugElement[] = fixture.debugElement.queryAll(
-      By.directive(MatCard)
-    );
-    const title: DebugElement = fixture.debugElement.query(
-      By.directive(MatCardTitle)
-    );
+    expect(fixture.nativeElement.children[0].children.length).toBe(2);
+    expect(fixture.nativeElement.children[0].hidden).toBe(false);
+  });
 
-    expect(title.nativeElement.textContent).toBe('foo');
-    // title + 2 controls
-    expect(card[0].nativeElement.children.length).toBe(3);
+  // TODO: broken due to https://github.com/angular/flex-layout/issues/848
+  xit('can be hidden', () => {
+    const uischema: VerticalLayout = {
+      type: 'VerticalLayout',
+      elements: [{ type: 'Control' }, { type: 'Control' }],
+    };
+    component.visible = false;
+    setupMockStore(fixture, {
+      data: {},
+      schema: {},
+      uischema,
+    });
+    component.ngOnInit();
+    expect(fixture.nativeElement.children[0].style.display).toBe('none');
   });
 });

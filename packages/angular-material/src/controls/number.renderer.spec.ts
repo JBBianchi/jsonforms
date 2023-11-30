@@ -41,7 +41,7 @@ import {
   prepareComponent,
 } from '@jsonforms/angular-test';
 import { Actions, ControlElement, JsonFormsCore } from '@jsonforms/core';
-import { NumberControlRenderer, NumberControlRendererTester } from '../src';
+import { NumberControlRenderer, NumberControlRendererTester } from './number.renderer';
 
 describe('Material number field tester', () => {
   const uischema = {

@@ -22,19 +22,23 @@
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
   THE SOFTWARE.
 */
-import { MatCheckbox, MatCheckboxModule } from '@angular/material/checkbox';
+import { DebugElement } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatError, MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {
-  booleanBaseTest,
-  booleanErrorTest,
-  booleanInputEventTest,
   ErrorTestExpectation,
+  textBaseTest,
+  textErrorTest,
+  textInputEventTest,
+  textTypeTest,
 } from '@jsonforms/angular-test';
-import { BooleanControlRenderer, booleanControlTester } from '../src';
+import { TextControlRenderer, TextControlRendererTester } from './text.renderer';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { JsonFormsAngularService } from '@jsonforms/angular';
 
-describe('Material boolean field tester', () => {
+describe('Material text field tester', () => {
   const uischema = {
     type: 'Control',
     scope: '#/properties/foo',
@@ -42,39 +46,48 @@ describe('Material boolean field tester', () => {
 
   it('should succeed', () => {
     expect(
-      booleanControlTester(
+      TextControlRendererTester(
         uischema,
         {
           type: 'object',
           properties: {
             foo: {
-              type: 'boolean',
+              type: 'string',
             },
           },
         },
         undefined
       )
-    ).toBe(2);
+    ).toBe(1);
   });
 });
-const imports = [MatCheckboxModule, MatFormFieldModule, FlexLayoutModule];
+const imports = [
+  MatFormFieldModule,
+  MatInputModule,
+  NoopAnimationsModule,
+  ReactiveFormsModule,
+  FlexLayoutModule,
+];
 const providers = [JsonFormsAngularService];
-const componentUT: any = BooleanControlRenderer;
+const componentUT: any = TextControlRenderer;
 const errorTest: ErrorTestExpectation = {
   errorInstance: MatError,
   numberOfElements: 1,
   indexOfElement: 0,
 };
+const toSelect = (el: DebugElement) => el.nativeElement;
 const testConfig = { imports, providers, componentUT };
+
 describe(
-  'Boolean control Base Tests',
-  booleanBaseTest(testConfig, MatCheckbox)
+  'Text control Base Tests',
+  textBaseTest(testConfig, 'input', toSelect)
 );
 describe(
-  'Boolean control Input Event Tests',
-  booleanInputEventTest(testConfig, MatCheckbox, 'label')
+  'Text control Input Event Tests',
+  textInputEventTest(testConfig, 'input', toSelect)
 );
+describe('Text control Error Tests', textErrorTest(testConfig, errorTest));
 describe(
-  'Boolean control Error Tests',
-  booleanErrorTest(testConfig, MatCheckbox, errorTest)
+  'Text control Type Tests',
+  textTypeTest(testConfig, 'input', toSelect)
 );

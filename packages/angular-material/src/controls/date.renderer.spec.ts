@@ -45,10 +45,10 @@ import {
   setupMockStore,
 } from '@jsonforms/angular-test';
 import { Actions, ControlElement, JsonSchema } from '@jsonforms/core';
-import { DateControlRenderer, DateControlRendererTester } from '../src';
+import { DateControlRenderer, DateControlRendererTester } from './date.renderer';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { JsonFormsAngularService } from '@jsonforms/angular';
-import { createTesterContext } from './util';
+import { createTesterContext } from '../../test/util';
 
 const data = { foo: '2018-01-01' };
 const schema: JsonSchema = {

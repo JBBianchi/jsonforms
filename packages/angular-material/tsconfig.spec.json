@@ -8,10 +8,14 @@
       "jasmine"
     ]
   },
+  "exclude": [
+    "node_modules"
+  ],
   "include": [
     "**/*.spec.ts",
     "**/*.d.ts"
   ],
+  "files": ["./src/index.ts"],
   "angularCompilerOptions": {
     "compilationMode": "partial",
     "strictMetadataEmit": true,

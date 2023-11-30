@@ -34,14 +34,14 @@ import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/t
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { JsonFormsAngularService, JsonFormsModule } from '@jsonforms/angular';
 import { ControlElement } from '@jsonforms/core';
-import { TextControlRenderer, TextControlRendererTester } from '../src';
+import { TextControlRenderer, TextControlRendererTester } from '../controls';
 import {
   TableRenderer,
   TableRendererTester,
-} from '../src/other/table.renderer';
+} from './table.renderer';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { setupMockStore } from '@jsonforms/angular-test';
-import { createTesterContext } from './util';
+import { createTesterContext } from '../../test/util';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 const uischema1: ControlElement = { type: 'Control', scope: '#' };

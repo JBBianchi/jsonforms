@@ -5,7 +5,10 @@
     "sourceMap": true,
     "target": "es5"
   },
-  "exclude": ["node_modules"],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts",
+  ],
   "files": ["./src/index.ts"],
   "angularCompilerOptions": {
     "compilationMode": "partial",

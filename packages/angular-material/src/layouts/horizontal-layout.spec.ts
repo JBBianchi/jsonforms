@@ -29,8 +29,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import {
   HorizontalLayoutRenderer,
   horizontalLayoutTester,
-} from '../src/layouts/horizontal-layout.renderer';
-import { LayoutChildrenRenderPropsPipe } from '../src/layouts/layout.renderer';
+} from './horizontal-layout.renderer';
+import { LayoutChildrenRenderPropsPipe } from './layout.renderer';
 
 describe('Horizontal layout tester', () => {
   it('should succeed', () => {

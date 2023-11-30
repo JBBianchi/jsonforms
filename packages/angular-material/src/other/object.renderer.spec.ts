@@ -36,17 +36,19 @@ import { ControlElement } from '@jsonforms/core';
 import {
   GroupLayoutRenderer,
   groupLayoutTester,
-  TextControlRenderer,
-  TextControlRendererTester,
   VerticalLayoutRenderer,
   verticalLayoutTester,
-} from '../src';
+  LayoutChildrenRenderPropsPipe
+} from '../layouts';
+import {
+  TextControlRenderer,
+  TextControlRendererTester,
+} from '../controls';
 import {
   ObjectControlRenderer,
   ObjectControlRendererTester,
-} from '../src/other/object.renderer';
+} from './object.renderer';
 import { getJsonFormsService } from '@jsonforms/angular-test';
-import { LayoutChildrenRenderPropsPipe } from '../src/layouts/layout.renderer';
 
 const uischema1: ControlElement = { type: 'Control', scope: '#' };
 const uischema2: ControlElement = {

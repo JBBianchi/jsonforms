@@ -34,7 +34,7 @@ import {
   textErrorTest,
   textInputEventTest,
 } from '@jsonforms/angular-test';
-import { TextAreaRenderer, TextAreaRendererTester } from '../src';
+import { TextAreaRenderer, TextAreaRendererTester } from './textarea.renderer';
 import { ControlElement, JsonSchema } from '@jsonforms/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { JsonFormsAngularService } from '@jsonforms/angular';
